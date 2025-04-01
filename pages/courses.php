@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UniCourse</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
@@ -57,15 +57,15 @@
           <ul class="navbar-list">
 
             <li>
-              <a href="index.html" class="navbar-link" data-nav-link>home</a>
+              <a href="../index.php" class="navbar-link" data-nav-link>home</a>
             </li>
 
             <li>
-              <a href="visualisation.html" class="navbar-link" data-nav-link>Visualisation</a>
+              <a href="visualisation.php" class="navbar-link" data-nav-link>Visualisation</a>
             </li>
 
             <li>
-              <a href="courses.html" class="navbar-link" data-nav-link>Courses</a>
+              <a href="courses.php" class="navbar-link" data-nav-link>Courses</a>
             </li>
 
             <li>
@@ -105,7 +105,7 @@
       <section class="hero" id="home" style="min-height: 200px;">
         <!-- Background Video -->
         <video class="hero-video" autoplay muted loop playsinline>
-          <source src="img/0215.mp4" type="video/mp4">
+          <source src="../img/0215.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       <br>
@@ -139,7 +139,7 @@
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="img/package-1.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
+                  <img src="../img/package-1.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -201,7 +201,8 @@
                     <span>/ access forever</span>
                   </p>
 
-                  <button class="btn btn-secondary">Buy Now</button>
+                  <a href="coursedetails.php" class="btn btn-secondary">Buy Now</a>
+
 
                 </div>
 
@@ -212,7 +213,7 @@
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="img/packege-2.jpg" alt="Summer Holiday To The Oxolotan River" loading="lazy">
+                  <img src="../img/packege-2.jpg" alt="Summer Holiday To The Oxolotan River" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -285,7 +286,7 @@
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="img/packege-3.jpg" alt="Santorini Island's Weekend Vacation" loading="lazy">
+                  <img src="../img/packege-3.jpg" alt="Santorini Island's Weekend Vacation" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -474,9 +475,9 @@
   <!-- 
     - ionicon link
   -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  <script src="js/app.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 </html>

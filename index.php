@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UniCourse</title>
+  <title>UniShort</title>
   <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/css/ionicons.min.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
@@ -11,11 +11,7 @@
 </head>
 <body>
 
-  <!-- 
-    - #HEADER
-  -->
-
-  <header class="header" data-header>
+<header class="header" data-header>
 
     <div class="overlay" data-overlay></div>
 
@@ -23,7 +19,7 @@
       <div class="container">
 
         <a href="#" class="logo">
-          UNICOURSE
+          UNISHORTS
         </a>
 
       </div>
@@ -63,15 +59,15 @@
             </li>
 
             <li>
-              <a href="visualisation.html" class="navbar-link" data-nav-link>Visualisation</a>
+              <a href="pages/visualisation.php" class="navbar-link" data-nav-link>Visualisation</a>
             </li>
 
             <li>
-              <a href="courses.html" class="navbar-link" data-nav-link>Courses</a>
+              <a href="pages/courses.php" class="navbar-link" data-nav-link>Courses</a>
             </li>
 
             <li>
-              <a href="payment.html" class="navbar-link" data-nav-link>Payment</a>
+              <a href="#payment" class="navbar-link" data-nav-link>Payment</a>
             </li>
 
             <li>
@@ -82,20 +78,24 @@
               <a href="#contact" class="navbar-link" data-nav-link>contact us</a>
             </li>
 
-          </ul>
+            </nav>
+            <!-- Loign Modal  -->
+            <?php
+            if (file_exists("pages/login.php") && filesize("pages/login.php") > 0) {
+                include("pages/login.php");
+            } elseif (file_exists("./login.php") && filesize("./login.php") > 0) {
+                include("./login.php");
+            } else {
+                echo "<p>Login module is not available.</p>";
+            }
+            ?>
+            <!-- Loign Modal  -->
 
-        </nav>
 
-        <button class="btn btn-primary">Login</button>
-
-      </div>
+          </div>
     </div>
 
   </header>
-
-
-
-
 
   <main>
     <article>
@@ -119,8 +119,14 @@
             <br> Unlock the power of efficient problem-solving with our comprehensive Data Structures and Algorithms courses.
           </p>
       
-          <div class="btn-group">
-            <button class="btn btn-primary"><a href="#destination" style="color: aliceblue;">Learn more</a></button>
+            <div class="btn-group">
+            <!-- Sign up modal -->
+             <?php
+            include("pages/signup.php");
+            ?>
+            <!-- Sign up modal -->
+
+
             <button class="btn btn-secondary"><a href="courses.html" style="color: aliceblue;">Courses</a></button>
           </div>
         </div>
@@ -134,7 +140,7 @@
         - #POPULAR
       -->
 
-      <section class="popular" id="destination">
+      <section class="popular" id="visualisations">
         <div class="container">
 
           <p class="section-subtitle">Uncover the secrets</p>
@@ -169,7 +175,7 @@
                   </p>
 
                   <h3 class="h3 card-title">
-                    <a href="searchvisualiser.html">Search Algorithms</a>
+                    <a href="pages/searchvisualiser.html">Search Algorithms</a>
                   </h3>
 
                   <p class="card-text">
@@ -203,7 +209,7 @@
                   </p>
 
                   <h3 class="h3 card-title">
-                    <a href="sortvisualiser.html">Sorting Algorithms</a>
+                    <a href="pages/sortvisualiser.html">Sorting Algorithms</a>
                   </h3>
 
                   <p class="card-text">
@@ -237,7 +243,7 @@
                   </p>
 
                   <h3 class="h3 card-title">
-                    <a href="pathvisualiser.html">Path Algorithms</a>
+                    <a href="pages/pathvisualiser.html">Path Algorithms</a>
                   </h3>
 
                   <p class="card-text">
@@ -251,7 +257,7 @@
 
           </ul>
 
-          <button class="btn btn-primary"><a href="visualisation.html" style="color: aliceblue;">More Tools</a></button>
+          <button class="btn btn-primary"><a href="pages/visualisation.php" style="color: aliceblue;">More Tools</a></button>
 
         </div>
       </section>
@@ -264,7 +270,7 @@
         - #PACKAGE
       -->
 
-      <section class="package" id="package">
+      <section class="package" id="courses">
         <div class="container">
 
           <p class="section-subtitle">Popular Courses</p>
@@ -498,7 +504,7 @@
 
           </ul>
 
-          <button class="btn btn-primary"><a style="color: aliceblue;" href="courses.html">View All Courses</a></button>
+          <button class="btn btn-primary"><a style="color: aliceblue;" href="pages/courses.php">View All Courses</a></button>
 
         </div>
       </section>
@@ -610,6 +616,8 @@
           <p class="footer-text">
             This course provides a fundamental understanding of data organization and efficient problem-solving techniques in computer science. It covers essential data structures such as arrays, linked lists, stacks, queues, trees, and graphs, along with their applications. 
           </p>
+          
+
 
         </div>
 

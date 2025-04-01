@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UniCourse</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
@@ -57,7 +57,7 @@
           <ul class="navbar-list">
 
             <li>
-              <a href="index.html" class="navbar-link" data-nav-link>home</a>
+              <a href="../index.php" class="navbar-link" data-nav-link>home</a>
             </li>
 
             <li>
@@ -69,7 +69,7 @@
             </li>
 
             <li>
-              <a href="payment.html" class="navbar-link" data-nav-link>Payment</a>
+              <a href="" class="navbar-link" data-nav-link>Payment</a>
             </li>
 
             <li>
@@ -95,153 +95,53 @@
 
 
 
-  <main>
+<main>
     <article>
 
-      <!-- 
-        - #HERO
-      -->
+        <!-- 
+            - #HERO
+        -->
 
-      <section class="hero" id="home" style="min-height: 200px;">
-        <!-- Background Video -->
-        <video class="hero-video" autoplay muted loop playsinline>
-          <source src="img/0215.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      <br>
-      
-        <div class="container">
-          <p style="color: rgb(213, 213, 213);">Scroll Down</p>
-          <a href="#package" style="color: rgb(213, 213, 213);">
-            <i class="fas fa-arrow-down"></i>
-          </a>
+        <section class="hero" id="home" style="min-height: 200px;">
+            <!-- Background Video -->
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="../img/0215.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        <br>
+        
+            <div class="container">
+                <p style="color: rgb(213, 213, 213);">Scroll Down</p>
+                <a href="#package" style="color: rgb(213, 213, 213);">
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+        </section>
+
+        <div class="admin-form-container" style="display: flex; justify-content: center; align-items: center; min-height: 60vh;">
+            <div style="background-color: #f9f9f9; padding: 30px; border-radius: 10px; width: 100%; max-width: 400px;">
+                <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Admin Login</h2>
+                <form>
+                    <div style="margin-bottom: 15px;">
+                        <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold; color: #555;">Email:</label>
+                        <input type="email" id="adminemail" name="adminemail" placeholder="Enter your email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label for="password" style="display: block; margin-bottom: 5px; font-weight: bold; color: #555;">Password:</label>
+                        <input type="password" id="adminpassword" name="adminpassword" placeholder="Enter your password" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    </div>
+
+                    <button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Login</button>
+                </form>
+            </div>
         </div>
-      </section>
-    
-
-      <!-- 
-        - #POPULAR
-      -->
-
-      <section class="popular" id="destination">
-        <div class="container">
-
-          <h2 class="h2 section-title" style="margin-bottom: 50px; margin-top: -50px;">Popular Visualisation tools</h2>
-
-
-          <ul class="popular-list">
-
-            <li>
-              <div class="popular-card">
-
-                <figure class="card-img">
-                  <img src="img/popular-1.jpg" alt="San miguel, italy" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <p class="card-subtitle">
-                    <a href="#">AlgoExpert</a>
-                  </p>
-
-                  <h3 class="h3 card-title">
-                    <a href="searchvisualiser.html">Search Algorithms</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Visualisations like linear, binary, ternary are covered step by step iteration.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="popular-card">
-
-                <figure class="card-img">
-                  <img src="img/popular-2.jpg" alt="" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <p class="card-subtitle">
-                    <a href="#">AlTcher</a>
-                  </p>
-
-                  <h3 class="h3 card-title">
-                    <a href="sortvisualiser.html">Sorting Algorithms</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Algorithms like bubble, insertion, merge quick and many more are covered in this visualisation
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="popular-card">
-
-                <figure class="card-img">
-                  <img src="img/popular-3.jpg" alt="Kyoto temple, japan" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <p class="card-subtitle">
-                    <a href="#">TahmeedAlgo</a>
-                  </p>
-
-                  <h3 class="h3 card-title">
-                    <a href="searchvisualiser.html">Path Algorithms</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Traversal and pathfinding algorithms that are crucial for understanding flow and connectiviity.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
+    </article>
+</main>
 
 
 
-
-  <!-- 
+<!-- 
     - #FOOTER
   -->
 
@@ -339,10 +239,7 @@
 
   </footer>
 
-
-
-
-
+      
   <!-- 
     - #GO TO TOP
   -->
@@ -355,9 +252,10 @@
   <!-- 
     - ionicon link
   -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
 
-  <script src="js/app.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 </html>
