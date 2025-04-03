@@ -136,5 +136,30 @@ function clearStuRegField() {
 
 
 function checkStuLogin() {
-    console.log("Login Check");
+    var stuLogEmail = $("#stuLogEmail").val();
+    var stuLogPass = $("#stuLogPass").val();
+    $.ajax({
+        url: 'Student/addstudent.php',
+        method: 'POST',
+        data: {
+            checklogemail: "checklogemail",
+            stuLogEmail: stuLogEmail,
+            stuLogPass: stuLogPass,
+        },
+        success: function(data){
+            if (data == 0) {
+                $("#statusLogMsg").html(
+                    '<small style="color:red;">Invalid Email or Password!</small>'
+                );
+            } else if (data == 1) {
+                $("#statusLogMsg").html(
+                    '<small style="color:green;">Login Successful!</small>'
+                );
+                setTimeout(() => {
+                    window.location.href = "index.php";
+                }
+                , 500);
+            }
+        },
+    });    
 }

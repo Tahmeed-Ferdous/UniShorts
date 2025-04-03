@@ -117,13 +117,26 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <?php
 if (file_exists("../js/ajaxrequest.js") && filesize("../js/ajaxrequest.js") > 0) {
-    echo '<script type="text/javascript" src="../js/ajaxrequest.js"></script>';
+  echo '<script type="text/javascript" src="../js/ajaxrequest.js"></script>';
 } elseif (file_exists("js/ajaxrequest.js") && filesize("js/ajaxrequest.js") > 0) {
-    echo '<script type="text/javascript" src="js/ajaxrequest.js"></script>';
+  echo '<script type="text/javascript" src="js/ajaxrequest.js"></script>';
 } else {
-    echo "<p>Ajax request script is not available.</p>";
+  echo "<p>Ajax request script is not available.</p>";
+}
+?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<?php
+if (file_exists("../js/adminajaxrequest.js") && filesize("../js/adminajaxrequest.js") > 0) {
+  echo '<script type="text/javascript" src="../js/adminajaxrequest.js"></script>';
+} elseif (file_exists("js/adminajaxrequest.js") && filesize("js/adminajaxrequest.js") > 0) {
+  echo '<script type="text/javascript" src="js/adminajaxrequest.js"></script>';
+} else {
+  echo "<p>Admin Ajax request script is not available.</p>";
 }
 ?>
 <script src="js/app.js"></script>

@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,13 +127,17 @@
       
             <div class="btn-group">
             <!-- Sign up modal -->
-             <?php
-            include("pages/signup.php");
+            <?php
+            if (isset($_SESSION['is_login'])) {
+              echo '<button class="btn btn-primary"><a href="pages/profile.php" style="color: aliceblue;">Profile</a></button>';
+            } else {
+              include("pages/signup.php");
+            }
             ?>
             <!-- Sign up modal -->
 
 
-            <button class="btn btn-secondary"><a href="courses.html" style="color: aliceblue;">Courses</a></button>
+            <button class="btn btn-secondary"><a href="pages/courses.php" style="color: aliceblue;">Courses</a></button>
           </div>
         </div>
       </section>

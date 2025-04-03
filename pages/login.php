@@ -1,4 +1,19 @@
-<button class="btn btn-primary" id="loginBtn" onclick="document.getElementById('loginModal').style.display='flex'">Login</button>
+<?php 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if(isset($_SESSION['is_login'])){
+      // If user is logged in, show Profile button and Logout link
+      echo '<button class="btn btn-primary" id="profileBtn">Profile</button>';
+      echo '<a href="pages/logout.php" class="btn btn-secondary" id="logoutBtn">Logout</a>';
+    } else {
+        echo '<button class="btn btn-primary" id="loginBtn" onclick="document.getElementById(\'loginModal\').style.display=\'flex\'">Login</button>';
+    }
+?>
+
+
+
 
 <!-- Modal -->
 <div id="loginModal" class="modal" style="display: none;">
@@ -7,15 +22,15 @@
   <h2>Mentee Login</h2>
   <form>
   <label for="email">Email:</label>
-  <input type="email" id="email" name="email" placeholder="Enter your email" required>
+  <input type="email" id="stuLogEmail" name="stuLogEmail" placeholder="Enter your email" required>
   
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password" placeholder="Enter your password" required>
-  
-  <button onclick="checkStuLogin()" type="button" class="btn btn-primary" >Submit</button>
+  <input type="password" id="stuLogPass" name="stuLogPass" placeholder="Enter your password" required>
+  <small id="statusLogMsg"></small>
+  <button onclick="checkStuLogin()" type="button" class="btn btn-primary" >Login</button>
 
   </form>
-  <a href="pages/adminlogin.php" style="text-decoration: underline; display:flex; justify-content:center; margin: 5px;">Admin</a>
+  <a href="adminlogin.php" style="text-decoration: underline; display:flex; justify-content:center; margin: 5px;">Admin</a>
 </div>
 </div>
 
