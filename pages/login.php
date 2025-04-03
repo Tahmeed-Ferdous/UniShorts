@@ -12,7 +12,7 @@
   <label for="password">Password:</label>
   <input type="password" id="password" name="password" placeholder="Enter your password" required>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button onclick="checkStuLogin()" type="button" class="btn btn-primary" >Submit</button>
 
   </form>
   <a href="pages/adminlogin.php" style="text-decoration: underline; display:flex; justify-content:center; margin: 5px;">Admin</a>

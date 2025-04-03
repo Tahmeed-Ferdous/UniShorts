@@ -6,20 +6,21 @@
     <a href="#" class="close" id="closeModal">&times;</a>
     <h2>Mentee Sign Up</h2>
     <form id="signupForm" action="" method="post">
-      <label for="signupName">Name:</label>
+      <label for="signupName">Name:</label><small id="statusMsg1"></small>
       <input type="text" id="signupName" name="name" placeholder="Enter your name" required>
       
-      <label for="signupEmail">Email:</label>
+      <label for="signupEmail">Email:</label><small id="statusMsg2"></small>
       <input type="email" id="signupEmail" name="email" placeholder="Enter your email" required>
       
-      <label for="signupPassword">Password:</label>
+      <label for="signupPassword">Password:</label><small id="statusMsg3"></small>
       <input type="password" id="signupPassword" name="password" placeholder="Enter your password" required>
       
-      <label for="confirmPassword">Confirm Password:</label>
+      <label for="confirmPassword">Confirm Password:</label><small id="statusMsg4"></small>
       <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
       
       <p class="error-message" id="errorMessage">Passwords do not match</p>
-      <button type="submit" class="btn btn-primary">Register</button>
+      <span id="successMsg"></span>
+      <button onclick="addStu()" type="button" class="btn btn-primary" id=signup>Register</button>
     </form>
   </div>
 </div>
