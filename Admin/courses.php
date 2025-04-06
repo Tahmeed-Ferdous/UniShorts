@@ -1,3 +1,6 @@
+<?php include("../dbConnection.php"); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,6 +86,11 @@
 <div class="table-section">
   <h2 class="table-title">Courses Ordered</h2>
   <div class="table-responsive">
+    <?php 
+      $sql = "SELECT * FROM course";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0){
+    ?>
     <table class="orders-table">
       <thead>
         <tr>
@@ -93,26 +101,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>C-101</td>
-          <td>student1</td>
-          <td>author1</td>
-          <td><button class="delete-btn">Delete</button><button class="delete-btn">Edit</button></td>
-        </tr>
-        <tr>
-          <td>C-101</td>
-          <td>student1</td>
-          <td>author1</td>
-          <td><button class="delete-btn">Delete</button><button class="delete-btn">Edit</button></td>
-        </tr>
-        <tr>
-        <td>C-101</td>
-          <td>student1</td>
-          <td>author1</td>
-          <td><button class="delete-btn">Delete</button><button class="delete-btn">Edit</button></td>
-        </tr>
+      <?php
+      while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row['course_id'] . "</td>";
+        echo "<td>" . $row['course_name'] . "</td>";
+        echo "<td>" . $row['course_author'] . "</td>";
+        echo "<td>
+            <button class='delete-btn'>Delete</button>
+            <button class='delete-btn'>Edit</button>
+          </td>";
+        echo "</tr>";
+       }
+       ?>
       </tbody>
     </table>
+    <?php 
+    } else {
+      echo "<p>No courses found.</p>";
+    }
+    ?>
   </div>
 </div>
 
