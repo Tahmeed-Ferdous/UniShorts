@@ -108,9 +108,15 @@
         echo "<td>" . $row['course_name'] . "</td>";
         echo "<td>" . $row['course_author'] . "</td>";
         echo "<td>
-            <button class='delete-btn'>Delete</button>
-            <button class='delete-btn'>Edit</button>
-          </td>";
+        <form action='editcourse.php' method='POST' style='display: inline-block; margin-right: 5px;'>
+            <input type='hidden' name='id' value='" . $row['course_id'] . "'>
+            <button type='submit' name='delete' value='Delete' class='delete-btn'>Delete</button>
+        </form>
+        <form method='POST' action='editCourse.php' style='display: inline-block;'>
+        <input type='hidden' name='id' value='" . $row['course_id'] . "'> 
+        <button class='delete-btn' type='submit' name='view' value='View' style='display: inline-block;'>Edit</button>
+        </form>
+        </td>";
         echo "</tr>";
        }
        ?>
@@ -119,6 +125,14 @@
     <?php 
     } else {
       echo "<p>No courses found.</p>";
+    }
+    if(isset($_REQUEST['delete'])){
+    $sql = "DELETE FROM course WHERE course_id = {$_REQUEST['id']}";
+      if($conn->query($sql) == TRUE){
+        echo "<script>alert('Course Deleted');</script>";
+      } else {
+        echo "<script>alert('Unable to Delete Course');</script>";
+      }
     }
     ?>
   </div>

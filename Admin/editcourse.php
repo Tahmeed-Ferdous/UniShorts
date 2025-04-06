@@ -1,44 +1,16 @@
-<?php 
-  include("admininclude/header.php");
-  include("../dbConnection.php");
-  if(isset($_REQUEST['courseSubmitBtn'])){
-    // checking for empty fields
-    if(($_REQUEST['course_name'] == "" ) || ($_REQUEST['course_desc'] == "") || ($_REQUEST['course_author'] == "") || ($_REQUEST['course_duration'] == "") || ($_REQUEST['course_original_price'] == "") || ($_REQUEST['course_price'] == "")){
-      $msg = '<div class="alert alert-warning col-sm-6 ml-5 mt-2">Fill all fields</div>';
-    }else{
-      // Assigning user values to variables
-      $course_name = $_REQUEST['course_name'];
-      $course_desc = $_REQUEST['course_desc'];
-      $course_author = $_REQUEST['course_author'];
-      $course_duration = $_REQUEST['course_duration'];
-      $course_original_price = $_REQUEST['course_original_price'];
-      $course_price = $_REQUEST['course_price'];
-      $course_img = $_FILES['course_img']['name'];
-      $course_img_temp = $_FILES['course_img']['tmp_name'];
-      $img_folder = "../img/courseimg/".$course_img;
-      move_uploaded_file($course_img_temp, $img_folder);
-
-      $sql = "INSERT INTO course (course_name, course_desc, course_author, course_duration, course_original_price, course_price, course_img) VALUES ('$course_name', '$course_desc', '$course_author', '$course_duration', '$course_original_price', '$course_price', '$img_folder')";
-
-      if($conn->query($sql) == TRUE){
-        $msg = '<div class="alert alert-success col-sm-6 ml-5 mt-2">Course Added Successfully</div>';
-      }else{
-        $msg = '<div class="alert alert-danger col-sm-6 ml-5 mt-2">Unable to Add Course</div>';
-      }
-    }
-
-  }
+<?php include("../dbConnection.php"); 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Add Courses</title>
-  <link rel="stylesheet" href="admininclude/headerstyle.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="admininclude/headerstyle.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
     body {
       background: #f0f2f5;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -112,7 +84,10 @@
   </style>
 </head>
 <body>
-  <div class="form-container">
+    
+<?php include("admininclude/header.php") ?>
+
+<div class="form-container">
     <h2>Add Courses</h2>
     <form action="#" method="post" enctype="multipart/form-data">
       <div class="form-group">
@@ -151,7 +126,11 @@
 
     </form>
   </div>
-  <script src="../js/adminscript.js"></script>
-  <script src="../js/adminajaxrequest.js"></script>
+
+
+
+<script src="../js/adminscript.js"></script>
+<script src="../js/adminajaxrequest.js"></script>
+
 </body>
 </html>
