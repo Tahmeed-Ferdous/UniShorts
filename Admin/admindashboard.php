@@ -1,3 +1,17 @@
+<?php  
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+include("../dbConnection.php"); 
+
+if(isset($_SESSION['is_admin_login'])) {
+    $adminemail = $_SESSION['adminemail'];}
+else {
+    echo "<script>location.href='../index.php';</script>";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

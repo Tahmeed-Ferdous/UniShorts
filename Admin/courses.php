@@ -1,4 +1,15 @@
-<?php include("../dbConnection.php"); 
+<?php 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+include("../dbConnection.php"); 
+
+if(isset($_SESSION['is_admin_login'])) {
+    $adminemail = $_SESSION['adminemail'];}
+else {
+    echo "<script>location.href='../index.php';</script>";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -108,13 +119,13 @@
         echo "<td>" . $row['course_name'] . "</td>";
         echo "<td>" . $row['course_author'] . "</td>";
         echo "<td>
-        <form action='editcourse.php' method='POST' style='display: inline-block; margin-right: 5px;'>
+        <form action='' method='POST' style='display: inline-block; margin-right: 5px;'>
             <input type='hidden' name='id' value='" . $row['course_id'] . "'>
             <button type='submit' name='delete' value='Delete' class='delete-btn'>Delete</button>
         </form>
         <form method='POST' action='editCourse.php' style='display: inline-block;'>
         <input type='hidden' name='id' value='" . $row['course_id'] . "'> 
-        <button class='delete-btn' type='submit' name='view' value='View' style='display: inline-block;'>Edit</button>
+        <button class='btn-secondary' type='submit' name='view' value='View' style='display: inline-block;'>Edit</button>
         </form>
         </td>";
         echo "</tr>";

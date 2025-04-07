@@ -1,6 +1,17 @@
 <?php 
-  include("admininclude/header.php");
-  include("../dbConnection.php");
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+include("admininclude/header.php");
+include("../dbConnection.php"); 
+
+if(isset($_SESSION['is_admin_login'])) {
+    $adminemail = $_SESSION['adminemail'];}
+else {
+    echo "<script>location.href='../index.php';</script>";
+  }
+  
   if(isset($_REQUEST['courseSubmitBtn'])){
     // checking for empty fields
     if(($_REQUEST['course_name'] == "" ) || ($_REQUEST['course_desc'] == "") || ($_REQUEST['course_author'] == "") || ($_REQUEST['course_duration'] == "") || ($_REQUEST['course_original_price'] == "") || ($_REQUEST['course_price'] == "")){
@@ -114,7 +125,7 @@
 <body>
   <div class="form-container">
     <h2>Add Courses</h2>
-    <form action="#" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="courseName">Course Name</label>
         <input type="text" id="course_name" name="course_name" required>
@@ -145,7 +156,7 @@
       </div>
       <div class="button-group">
         <button type="submit" class="btn btn-submit" id="courseSubmitBtn" name="courseSubmitBtn">Submit</button>
-        <button type="button" class="btn btn-close" href='course.php'>Close</button>
+        <a class="btn btn-close" href='courses.php'>Close</a>
       </div>
     <?php if(isset($msg)) { echo $msg; } ?>
 
