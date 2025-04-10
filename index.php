@@ -129,7 +129,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <!-- Sign up modal -->
             <?php
             if (isset($_SESSION['is_login'])) {
-              echo '<button class="btn btn-primary"><a href="Student/studentProfile.php" style="color: aliceblue;">Profile</a></button>';
+              echo '<button class="btn btn-primary"><a href="student/studentProfile.php" style="color: aliceblue;">Profile</a></button>';
             } else {
               include("pages/signup.php");
             }

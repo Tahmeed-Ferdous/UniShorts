@@ -5,7 +5,7 @@
 
     if(isset($_SESSION['is_login'])){
       // If user is logged in, show Profile button and Logout link
-      echo '<a href="Student/studentProfile.php" class="btn btn-primary" id="profileBtn">Profile</a>';
+      echo '<a href="student/studentProfile.php" class="btn btn-primary" id="profileBtn">Profile</a>';
       echo '<a href="pages/logout.php" class="btn btn-secondary" id="logoutBtn">Logout</a>';
     } else {
         echo '<button class="btn btn-primary" id="loginBtn" onclick="document.getElementById(\'loginModal\').style.display=\'flex\'">Login</button>';

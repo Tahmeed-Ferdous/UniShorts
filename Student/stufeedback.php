@@ -1,55 +1,46 @@
 <?php 
-if(!isset($_SESSION)) 
-{ 
+if(!isset($_SESSION)){
     session_start(); 
 }
 include("stuinclude/header.php");
 include_once("../dbConnection.php");
 
 if(isset($_SESSION['is_login'])) {
-    $stuEmail = $_SESSION['stuLogEmail'];
+    $stuLogEmail = $_SESSION['stuLogEmail'];
 } else {
     echo "<script>location.href='../index.php';</script>";
 }
 
-$sql = "SELECT * FROM student WHERE stu_email = '$stuEmail'";
+$sql = "SELECT * FROM student WHERE stu_email = '$stuLogEmail'";
 $result = $conn->query($sql);
 if($result->num_rows == 1) {
     $row = $result->fetch_assoc();
     $stuId = $row['stu_id'];
-    $stu_name = $row['stu_name'];
-    $stu_occ = $row['stu_occ'];
-    $stu_img = $row['stu_img'];
 }
 
-if(isset($_REQUEST['updateStuNameBtn'])){
-    if(($_REQUEST['stu_name'] == "")){
+if(isset($_REQUEST['submitFeedback'])){
+    if(($_REQUEST['f_content'] == "")){
         $passmsg = '<div class="alert alert-warning mt-2" role="alert">Fill all fields</div>';
     } else {
-        $stu_name = $_REQUEST['stu_name'];
-        $stu_occ = $_REQUEST['stu_occ'];
-        $stu_img = $_FILES['stu_img']['name'];
-        $stu_img_tmp = $_FILES['stu_img']['tmp_name'];
-        $img_folder = '../img/stu'.$stu_img;
-        move_uploaded_file($stu_img_tmp, $img_folder);
-        $sql = "UPDATE student SET stu_name = '$stu_name', stu_occ = '$stu_occ', stu_img = '$img_folder' WHERE stu_email = '$stuEmail'";
+        $fcontent = $_REQUEST['f_content'];
+        $sql = "INSERT INTO feedback (f_content, stu_id) VALUES ('$fcontent', '$stuId')";
         if($conn->query($sql) == TRUE) {
-            $passmsg = '<div class="alert alert-success mt-2" role="alert">Updated Successfully</div>';
+            $passmsg = '<div class="alert alert-success mt-2" role="alert">Feedback Submitted Successfully</div>';
         } else {
-            $passmsg = '<div class="alert alert-danger mt-2" role="alert">Unable to Update</div>';
+            $passmsg = '<div class="alert alert-danger mt-2" role="alert">Unable to Submit Feedback</div>';
         }
     }
 }
-
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Feedback</title>
     <style>
   body {
     margin: 0;
@@ -109,23 +100,10 @@ if(isset($_REQUEST['updateStuNameBtn'])){
         <input type="text" class="form-control" id="stuId" name="stuId" value="<?php if(isset($row['stu_id'])){echo $row['stu_id'];} ?>" readonly>
       </div>
       <div class="form-group">
-        <label>Student Email</label>
-        <input type="email" class="form-control" value="<?php echo $stuEmail; ?>" readonly>
+        <label>Write Feedback:</label>
+        <textarea class="form-control" name="f_content" id="f_content"><?php if(isset($fcontent)){echo $fcontent;} ?></textarea>
       </div>
-      <div class="form-group">
-        <label>Student Name</label>
-        <input type="text" class="form-control" name="stu_name" value="<?php if(isset($stu_name)){echo $stu_name;} ?>">
-      </div>
-      <div class="form-group">
-        <label>Student Occupation</label>
-        <input type="text" class="form-control" name="stu_occ" value="<?php if(isset($stu_occ)){echo $stu_occ;} ?>">
-      </div>
-      <div class="form-group">
-        <label>Upload Image</label>
-        <input type="file" class="form-control" name="stu_img">
-        <img src="<?php if(isset($stu_img)){echo $stu_img;} ?>">
-      </div>
-      <button type="submit" class="btn" style="background-color: hsl(214, 57%, 51%); color: white;" name="updateStuNameBtn">Update</button>
+      <button type="submit" class="btn" style="background-color: hsl(214, 57%, 51%); color: white;" name="submitFeedback">Submit</button>
       
       <div class="mt-3">
         <?php if(isset($passmsg)) { echo $passmsg; } ?>
@@ -133,5 +111,6 @@ if(isset($_REQUEST['updateStuNameBtn'])){
     </form>
   </div>
 </div>
+    
 </body>
 </html>
