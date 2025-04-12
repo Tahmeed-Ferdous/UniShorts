@@ -1,7 +1,6 @@
 $(document).ready(function () {
     var reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-    // Ajax Call form Already Exists Email Verification
     $("#signupEmail").on("keypress blur", function () {
         var stuemail = $("#signupEmail").val();
         $.ajax({
@@ -12,7 +11,6 @@ $(document).ready(function () {
                 stuemail: stuemail,
             },
             success: function (data) {
-                // console.log(data);
                 if (data != 0 && reg.test(stuemail)) {
                     $("#statusMsg2").html(
                         '<small style="color:red;">Email ID already in use!</small>'

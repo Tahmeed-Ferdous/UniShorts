@@ -13,7 +13,7 @@ function checkAdminLogin() {
             adminpass: adminpass,
         },
         success: function(data) {
-            console.log("Response from server:", data); // Debug response
+            console.log("Response from server:", data);
 
             if (data == 0) {
                 console.log("Invalid credentials.");

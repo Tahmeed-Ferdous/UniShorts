@@ -2,6 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include('./dbConnection.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -161,111 +163,57 @@ if (session_status() === PHP_SESSION_NONE) {
             Atmost 80% algorithm visualisation tools that are needed by the students to study algorithms are the search, sort and find algorithm
           </p>
 
-          <ul class="popular-list">
+            <ul class="popular-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
 
-            <li>
+            <?php 
+            $sql = "SELECT stu_name, stu_occ, stu_img, f_content FROM student JOIN feedback ON student.stu_id = feedback.stu_id LIMIT 3";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0){
+              while($row = $result->fetch_assoc()){
+              $stu_img = $row['stu_img'];
+              $n_img = str_replace('..', '.', $stu_img);
+            ?>
+
+            <li style="flex: 1 1 calc(33.333% - 20px); box-sizing: border-box;">
+
               <div class="popular-card">
 
-                <figure class="card-img">
-                  <img src="img/popular-1.jpg" alt="San miguel, italy" loading="lazy">
-                </figure>
+              <figure class="card-img">
+                <img src="<?php echo $n_img ?>" alt="" loading="lazy">
+              </figure>
 
-                <div class="card-content">
+              <div class="card-content">
 
-                  <div class="card-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <p class="card-subtitle">
-                    <a href="#">AlgoExpert</a>
-                  </p>
-
-                  <h3 class="h3 card-title">
-                    <a href="pages/searchvisualiser.html">Search Algorithms</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Visualisations like linear, binary, ternary are covered step by step iteration.
-                  </p>
-
+                <div class="card-rating">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
                 </div>
 
-              </div>
-            </li>
+                <p class="card-subtitle">
+                <a href=""><?php echo $row['stu_name'] ?></a>
+                </p>
 
-            <li>
-              <div class="popular-card">
+                <h3 class="h3 card-title">
+                <a href="pages/searchvisualiser.html"><?php echo $row['stu_occ']; ?></a>
+                </h3>
 
-                <figure class="card-img">
-                  <img src="img/popular-2.jpg" alt="" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <p class="card-subtitle">
-                    <a href="#">AlTcher</a>
-                  </p>
-
-                  <h3 class="h3 card-title">
-                    <a href="pages/sortvisualiser.html">Sorting Algorithms</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Algorithms like bubble, insertion, merge quick and many more are covered in this visualisation
-                  </p>
-
-                </div>
+                <p class="card-text">
+                <?php echo $row['f_content']; ?>
+                </p>
 
               </div>
-            </li>
-
-            <li>
-              <div class="popular-card">
-
-                <figure class="card-img">
-                  <img src="img/popular-3.jpg" alt="Kyoto temple, japan" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <p class="card-subtitle">
-                    <a href="#">TahmeedAlgo</a>
-                  </p>
-
-                  <h3 class="h3 card-title">
-                    <a href="pages/pathvisualiser.html">Path Algorithms</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Traversal and pathfinding algorithms that are crucial for understanding flow and connectiviity.
-                  </p>
-
-                </div>
 
               </div>
+
             </li>
 
-          </ul>
+            <?php }
+            } ?>
+
+            </ul>
 
           <button class="btn btn-primary"><a href="pages/visualisation.php" style="color: aliceblue;">More Tools</a></button>
 
@@ -292,20 +240,26 @@ if (session_status() === PHP_SESSION_NONE) {
           </p>
 
           <ul class="package-list">
-
-            <li>
+            <?php 
+            $sql = "SELECT * FROM course LIMIT 3";
+            $result = $conn->query($sql);
+            if($result->num_rows>0){
+              while($row=$result->fetch_assoc()){
+                $course_id = $row['course_id'];
+                echo '
+              <li>
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="img/package-1.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
+                  <img src="'.str_replace('..', '.', $row['course_img']).'" alt="Course Image" loading="lazy">
                 </figure>
 
                 <div class="card-content">
 
-                  <h3 class="h3 card-title">Object-Oriented Programming</h3>
+                  <h3 class="h3 card-title">'.$row['course_name'].'</h3>
 
                   <p class="card-text">
-                    Dive into the core principles of OOP including classes, objects, inheritance, polymorphism, and encapsulation to build robust software.
+                    '.$row['course_desc'].'
                   </p>
 
                   <ul class="card-meta-list">
@@ -314,7 +268,7 @@ if (session_status() === PHP_SESSION_NONE) {
                       <div class="meta-box">
                         <ion-icon name="time"></ion-icon>
 
-                        <p class="text">1 week</p>
+                        <p class="text">'.$row['course_duration'].'</p>
                       </div>
                     </li>
 
@@ -322,7 +276,7 @@ if (session_status() === PHP_SESSION_NONE) {
                       <div class="meta-box">
                         <ion-icon name="people"></ion-icon>
 
-                        <p class="text">rating: 5</p>
+                        <p class="text">'.$row['course_author'].'</p>
                       </div>
                     </li>
 
@@ -354,163 +308,22 @@ if (session_status() === PHP_SESSION_NONE) {
 
                   </div>
 
-                  <p class="price">
-                    $10
-                    <span>/ access forever</span>
-                  </p>
+                    <p class="price">
+                    $'.$row['course_price'].'
+                    <span style="text-decoration: line-through; color: white; font-size: medium;">'.$row['course_original_price'].'</span>
+                    </p>
 
-                  <button class="btn btn-secondary">Buy Now</button>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="package-card">
-
-                <figure class="card-banner">
-                  <img src="img/packege-2.jpg" alt="Summer Holiday To The Oxolotan River" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3 card-title">Data Structures</h3>
-
-                  <p class="card-text">
-                    Master the fundamentals of data structures like arrays, linked lists, trees, and graphs, along with efficient algorithms for searching, sorting, and optimization.
-                  </p>
-
-                  <ul class="card-meta-list">
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="time"></ion-icon>
-
-                        <p class="text">2 weeks</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="people"></ion-icon>
-
-                        <p class="text">rating: 4</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="location"></ion-icon>
-
-                        <p class="text">Colab</p>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-price">
-
-                  <div class="wrapper">
-
-                    <p class="reviews">(20 reviews)</p>
-
-                    <div class="card-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                    </div>
-
-                  </div>
-
-                  <p class="price">
-                    $20
-                    <span>/ access forever</span>
-                  </p>
-
-                  <button class="btn btn-secondary">Buy Now</button>
+                  <a class="btn btn-secondary" href="pages/coursedetails.php?course_id='.$course_id.'" >Enroll</a>
 
                 </div>
 
               </div>
             </li>
+                ';
+              }
+            }
 
-            <li>
-              <div class="package-card">
-
-                <figure class="card-banner">
-                  <img src="img/packege-3.jpg" alt="Santorini Island's Weekend Vacation" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3 card-title">Databases with SQL</h3>
-
-                  <p class="card-text">
-                    Learn how to design, query, and manage databases with SQL, covering database design, normalization, and advanced management techniques.
-                  </p>
-
-                  <ul class="card-meta-list">
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="time"></ion-icon>
-
-                        <p class="text">1 week</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="people"></ion-icon>
-
-                        <p class="text">rating: 5</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="location"></ion-icon>
-
-                        <p class="text">SQL</p>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-price">
-
-                  <div class="wrapper">
-
-                    <p class="reviews">(40 reviews)</p>
-
-                    <div class="card-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                    </div>
-
-                  </div>
-
-                  <p class="price">
-                    $10
-                    <span>/ access forever</span>
-                  </p>
-
-                  <button class="btn btn-secondary">BUY Now</button>
-
-                </div>
-
-              </div>
-            </li>
+            ?>
 
           </ul>
 

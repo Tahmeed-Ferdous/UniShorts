@@ -57,8 +57,8 @@
     </div>
     <div class="bottom-content">
       <li class="nav-link">
-        <a href="url 'setting:settings_page'">
-          <i class='bx bxs-comment-dots icon'></i> <!-- Updated Feedback Icon -->
+        <a href="./feedback.php">
+          <i class='bx bxs-comment-dots icon'></i>
           <span class="text nav-text">Feedback</span>
         </a>
       </li>

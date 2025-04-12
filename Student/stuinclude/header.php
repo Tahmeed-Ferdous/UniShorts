@@ -120,7 +120,7 @@ if(isset($stuLogEmail)){
   </div>
   <ul class="nav">
     <li><a href="./studentProfile.php" class="active"><i class='bx bx-user'></i> Profile <span>(current)</span></a></li>
-    <li><a href="#"><i class='bx bx-book'></i> My Courses</a></li>
+    <li><a href="myCourse.php"><i class='bx bx-book'></i> My Courses</a></li>
     <li><a href="./stufeedback.php"><i class='bx bx-message-square-edit'></i> Feedback</a></li>
     <li><a href="./studentChangePass.php"><i class='bx bx-lock'></i> Change Password</a></li>
     <li><a href="../pages/logout.php"><i class='bx bx-log-out'></i> Logout</a></li>

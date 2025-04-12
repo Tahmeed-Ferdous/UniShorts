@@ -1,9 +1,15 @@
+<?php 
+include("../dbConnection.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UniCourse</title>
+  <title>UniShort</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
   <link rel="stylesheet" href="../style.css">
 </head>
@@ -21,7 +27,7 @@
       <div class="container">
 
         <a href="#" class="logo">
-          UNICOURSE
+          UNISHORT
         </a>
 
       </div>
@@ -134,20 +140,26 @@
 
 
           <ul class="package-list">
-
-            <li>
+            <?php 
+            $sql = "SELECT * FROM course LIMIT 3";
+            $result = $conn->query($sql);
+            if($result->num_rows>0){
+              while($row=$result->fetch_assoc()){
+                $course_id = $row['course_id'];
+                echo '
+              <li>
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="../img/package-1.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
+                  <img src="'.str_replace('..', '.', $row['course_img']).'" alt="Course Image" loading="lazy">
                 </figure>
 
                 <div class="card-content">
 
-                  <h3 class="h3 card-title">Object-Oriented Programming</h3>
+                  <h3 class="h3 card-title">'.$row['course_name'].'</h3>
 
                   <p class="card-text">
-                    Dive into the core principles of OOP including classes, objects, inheritance, polymorphism, and encapsulation to build robust software.
+                    '.$row['course_desc'].'
                   </p>
 
                   <ul class="card-meta-list">
@@ -156,7 +168,7 @@
                       <div class="meta-box">
                         <ion-icon name="time"></ion-icon>
 
-                        <p class="text">1 week</p>
+                        <p class="text">'.$row['course_duration'].'</p>
                       </div>
                     </li>
 
@@ -164,7 +176,7 @@
                       <div class="meta-box">
                         <ion-icon name="people"></ion-icon>
 
-                        <p class="text">rating: 5</p>
+                        <p class="text">'.$row['course_author'].'</p>
                       </div>
                     </li>
 
@@ -196,164 +208,22 @@
 
                   </div>
 
-                  <p class="price">
-                    $10
-                    <span>/ access forever</span>
-                  </p>
+                    <p class="price">
+                    $'.$row['course_price'].'
+                    <span style="text-decoration: line-through; color: white; font-size: medium;">'.$row['course_original_price'].'</span>
+                    </p>
 
-                  <a href="coursedetails.php" class="btn btn-secondary">Buy Now</a>
-
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="package-card">
-
-                <figure class="card-banner">
-                  <img src="../img/packege-2.jpg" alt="Summer Holiday To The Oxolotan River" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3 card-title">Data Structures</h3>
-
-                  <p class="card-text">
-                    Master the fundamentals of data structures like arrays, linked lists, trees, and graphs, along with efficient algorithms for searching, sorting, and optimization.
-                  </p>
-
-                  <ul class="card-meta-list">
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="time"></ion-icon>
-
-                        <p class="text">2 weeks</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="people"></ion-icon>
-
-                        <p class="text">rating: 4</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="location"></ion-icon>
-
-                        <p class="text">Colab</p>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-price">
-
-                  <div class="wrapper">
-
-                    <p class="reviews">(20 reviews)</p>
-
-                    <div class="card-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                    </div>
-
-                  </div>
-
-                  <p class="price">
-                    $20
-                    <span>/ access forever</span>
-                  </p>
-
-                  <button class="btn btn-secondary">Buy Now</button>
+                  <a class="btn btn-secondary" href="pages/coursedetails.php?course_id='.$course_id.'" >Enroll</a>
 
                 </div>
 
               </div>
             </li>
+                ';
+              }
+            }
 
-            <li>
-              <div class="package-card">
-
-                <figure class="card-banner">
-                  <img src="../img/packege-3.jpg" alt="Santorini Island's Weekend Vacation" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3 card-title">Databases with SQL</h3>
-
-                  <p class="card-text">
-                    Learn how to design, query, and manage databases with SQL, covering database design, normalization, and advanced management techniques.
-                  </p>
-
-                  <ul class="card-meta-list">
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="time"></ion-icon>
-
-                        <p class="text">1 week</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="people"></ion-icon>
-
-                        <p class="text">rating: 5</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="location"></ion-icon>
-
-                        <p class="text">SQL</p>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-price">
-
-                  <div class="wrapper">
-
-                    <p class="reviews">(40 reviews)</p>
-
-                    <div class="card-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                    </div>
-
-                  </div>
-
-                  <p class="price">
-                    $10
-                    <span>/ access forever</span>
-                  </p>
-
-                  <button class="btn btn-secondary">BUY Now</button>
-
-                </div>
-
-              </div>
-            </li>
+            ?>
 
           </ul>
 

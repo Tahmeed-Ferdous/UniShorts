@@ -1,9 +1,15 @@
+<?php 
+include("../dbConnection.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UniCourse</title>
+  <title>UniShort</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
   <link rel="stylesheet" href="../style.css">
 </head>
@@ -21,7 +27,7 @@
       <div class="container">
 
         <a href="#" class="logo">
-          UNICOURSE
+          UNISHORT
         </a>
 
       </div>
@@ -83,9 +89,6 @@
           </ul>
 
         </nav>
-
-        <button class="btn btn-primary">Login</button>
-
       </div>
     </div>
 
@@ -119,17 +122,108 @@
       </section>
   
 <div class=tongle>
+  <?php 
+  if(isset($_GET['course_id'])) {
+    $course_id = $_GET['course_id'];
+    $_SESSION['course_id'] = $course_id;
+    $sql = "SELECT * FROM course WHERE course_id = '$course_id'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    } 
+  ?>
     <div class="course-details">
-        <img src="../img/package-1.jpg" alt="Course Image">
-        <h1>Object-Oriented Programming</h1>
-        <p><strong>Duration:</strong> 1 week</p>
-        <p><strong>Platform:</strong> Colab</p>
-        <p><strong>Rating:</strong> 5 (25 reviews)</p>
-        <p>Dive into the core principles of OOP including classes, objects, inheritance, polymorphism, and encapsulation to build robust software.</p>
-        <p><strong>Price:</strong> $10</p>
-        <button class="btn btn-primary">Proceed to Payment</button>
+      <img src="<?php echo $row['course_img'] ?>">
+      <h1>Course Name: <?php echo $row['course_name']; ?></h1>
+      <p><strong>Duration:</strong> <?php echo $row['course_duration']; ?></p>
+      <p><strong>author:</strong>  <?php echo $row['course_author']; ?></p>
+      <p><strong>Rating:</strong> 5 (25 reviews)</p>
+      <p> <?php echo $row['course_desc']; ?></p>
+      <p><strong>Price:</strong> <?php echo $row['course_price']; ?></p>
+      <form action="checkout.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $row['course_id'] . ',' . $row['course_price']; ?>">
+        <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+      </form>
     </div>
 </div>
+
+<div class="lesson-table">
+  <h2>Lessons</h2>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Lesson No.</th>
+        <th>Lesson Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      if(isset($course_id)) {
+        $lesson_sql = "SELECT * FROM lesson WHERE course_id = '$course_id'";
+        $lesson_result = $conn->query($lesson_sql);
+        if ($lesson_result->num_rows > 0) {
+          $num=0;
+          while($lesson_row = $lesson_result->fetch_assoc()) {
+            $num++;
+            echo "<tr>";
+            echo "<td>" .$num. "</td>";
+            echo "<td>" . $lesson_row['lesson_name'] . "</td>";
+            echo "</tr>";
+          }
+        } else {
+          echo "<tr><td colspan='2'>No lessons available for this course.</td></tr>";
+        }
+      }
+      ?>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .lesson-table {
+    text-align: center;
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .lesson-table h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .styled-table thead tr {
+    background-color:rgb(43, 47, 51);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+
+  .styled-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+
+  .styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .styled-table tbody tr:last-of-type {
+    border-bottom: 2px soli;
+  }
+</style>
 
 <style>
     .tongle{        
@@ -166,6 +260,8 @@
         background-color: #0056b3;
     }
 </style>
+
+
 
 
 <?php
