@@ -42,9 +42,15 @@
           </a>
         </li>
         <li class="nav-link">
-          <a href="url 'profile' request.user">
+          <a href="salesreport.php">
             <i class='bx bxs-report icon'></i>
-            <span class="text nav-text">Sell Reports</span>
+            <span class="text nav-text">Sales Report</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a href="paymentstatus.php">
+            <i class='bx bxs-credit-card icon'></i>
+            <span class="text nav-text">Payment Status</span>
           </a>
         </li>
         <li class="nav-link">
